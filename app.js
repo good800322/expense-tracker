@@ -21,12 +21,8 @@ db.once('open', () => {
 app.engine('handlebars', exphb({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
 
-app.get('/', (req, res) => {
-  res.render('index')
-})
-app.get('/new', (req, res) => {
-  res.render('new')
-})
+//use routes for /expense
+app.use('/expenses', require('./routes/expenses.js'))
 
 app.listen(port, () => {
   console.log(`the app is listening on http://localhost:${port}/`)
