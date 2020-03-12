@@ -1,1 +1,43 @@
-<h1>Hello</h1>
+<div class="dropdown col-md-7 offset-md-2 mt-5">
+  <button class="btn btn-outline-dark dropdown-toggle btn-block text-align-start" type="button" id="dropdownMenuButton"
+    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    類別
+  </button>
+  <div class="dropdown-menu m-auto col-md-11 dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+    <a class="dropdown-item" href="#">Action</a>
+    <a class="dropdown-item" href="#">Another action</a>
+    <a class="dropdown-item" href="#">Something else here</a>
+  </div>
+</div>
+<div class="col-md-7 offset-md-2 mt-3">
+  <h5 class="font-weight-bold">總金額</h5>
+</div>
+<div class="col-md-7 offset-md-2">
+  <h1 class="text-right text-warning display-2" id="sum">1000</h1>
+</div>
+<div class="col-md-10 offset-md-2">
+  <ul class="list-group">
+    <li class="list-group-item">
+      <div class="row d-flex justify-content-between p-0 mt-4">
+        <div class="col-8 d-flex">
+          <i class="fas fa-home fa-3x col-auto" style="color:rgb(0, 238, 255)"></i>
+          <div class="d-flex flex-column">
+            <p class="h3 ">租金</p>
+            <p class="h5 ">2010/05/10</p>
+          </div>
+          <p class="h1 ml-auto">1000</p>
+        </div>
+        <div class="col-auto mr-1 p-0">
+          <a href="/expense/edit" class="btn btn-outline-dark btn-lg m-0">修改</a>
+          <form action="/expense/delete" method="POST" style="display:inline">
+            <button type="submit" class="btn btn-outline-dark btn-lg m-0">刪除</button>
+          </form>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>
+<div class="col-md-7 offset-md-2 d-flex justify-content-center">
+  <a href="/new" class="btn btn-warning btn-lg  mt-5">新增支出</a>
+</div>
+</div>
