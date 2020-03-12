@@ -84,9 +84,16 @@ router.post('/edit/:id', (req, res) => {
   //       .catch(err => console.error(err))
   //   })
 })
+
 //刪除
-router.get('/delete', (req, res) => {
-  res.send('delete')
+router.post('/delete/:id', (req, res) => {
+  Record.findById(req.params.id, (err, record) => {
+    if (err) console.error(err)
+    record.remove(err => {
+      if (err) console.error(err)
+      return res.redirect('/')
+    })
+  })
 })
 
 module.exports = router
