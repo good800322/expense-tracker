@@ -29,7 +29,7 @@
           <p class="h1 ml-auto">{{this.amount}}</p>
         </div>
         <div class="col-auto mr-1 p-0">
-          <a href="/expense/edit" class="btn btn-outline-dark btn-lg m-0">修改</a>
+          <a href="/expenses/edit/{{this._id}}" class="btn btn-outline-dark btn-lg m-0">修改</a>
           <form action="/expense/delete" method="POST" style="display:inline">
             <button type="submit" class="btn btn-outline-dark btn-lg m-0">刪除</button>
           </form>
