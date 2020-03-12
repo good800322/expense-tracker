@@ -24,6 +24,9 @@ app.set('view engine', 'handlebars')
 app.get('/', (req, res) => {
   res.render('index')
 })
+app.get('/new', (req, res) => {
+  res.render('new')
+})
 
 app.listen(port, () => {
   console.log(`the app is listening on http://localhost:${port}/`)

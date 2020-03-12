@@ -1,0 +1,50 @@
+<div class="row">
+  <div class="card card-body col-9 mt-5 mx-auto">
+    <div class="row mr-5">
+      <div class="col-sm-2">
+        <p>*為必填欄位</p>
+      </div>
+      <div class="col-sm-10">
+        <h4 class="text-center">請輸入你的支出</h4>
+      </div>
+    </div>
+    <form action="/" method="POST" class="mr-5">
+      <div class="form-group row my-4 py-2">
+        <label for="name" class="col-sm-2 col-form-label font-weight-bold">名稱*</label>
+        <div class="col-sm-10">
+          <input class="form-control" type="text" id="name" name="name">
+        </div>
+      </div>
+      <div class="form-group row my-4 py-2">
+        <label for="date" class="col-sm-2 col-form-label font-weight-bold">日期*</label>
+        <div class="col-sm-10">
+          <input class="form-control" type="text" id="date" name="date">
+        </div>
+      </div>
+      <div class="form-group row my-4 py-2">
+        <label for="category" class="col-sm-2 col-form-label font-weight-bold">類別*</label>
+        <div class="col-sm-10">
+          <select class="custom-select custom-select-lg mb-3">
+            <option selected>種類</option>
+            <option value="1">家用</option>
+            <option value="2">娛樂</option>
+            <option value="3">交通</option>
+            <option value="4">飲食</option>
+            <option value="5">其他</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group row my-4 py-2">
+        <label for="cost" class="col-sm-2 col-form-label font-weight-bold">金額*</label>
+        <div class="col-sm-10">
+          <input class="form-control" type="text" id="cost" name="cost">
+        </div>
+      </div>
+      <div class="form-group row my-4 py-2">
+        <div class="col-sm-10 offset-sm-2">
+          <button type="submit" class="btn btn-outline-dark btn-block mt-4">送出</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
