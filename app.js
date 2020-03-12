@@ -26,21 +26,11 @@ app.set('view engine', 'handlebars')
 app.use(bodyParser.urlencoded({ extended: true }))
 
 
-app.get('/', (req, res) => {
-  Record.find()
-    .lean()
-    .exec((err, records) => {
-      if (err) console.error(err)
-      //計算總額
-      let sum = 0
-      records.forEach(record => {
-        sum += record.amount
-      })
-      return res.render('index', { records: records, sum: sum })
-    })
-})
-//use routes for /expense
+
+//use routes
+app.use('/', require('./routes/home.js'))
 app.use('/expenses', require('./routes/expenses.js'))
+app.use('/user', require('./routes/user.js'))
 
 app.listen(port, () => {
   console.log(`the app is listening on http://localhost:${port}/`)
