@@ -5,6 +5,7 @@ const exphb = require('express-handlebars')
 const mongoose = require('mongoose')
 const Record = require('./models/expenseTracker.js')
 const bodyParser = require('body-parser')
+const methodOverride = require('method-override')
 
 mongoose.connect('mongodb://localhost/expenseTracker', { useNewUrlParser: true, useUnifiedTopology: true })
 const db = mongoose.connection
@@ -24,6 +25,8 @@ app.set('view engine', 'handlebars')
 
 //bodyParser
 app.use(bodyParser.urlencoded({ extended: true }))
+//method-override
+app.use(methodOverride('_method'))
 
 
 

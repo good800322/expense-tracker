@@ -49,7 +49,7 @@ router.get('/edit/:id', (req, res) => {
     })
 })
 //修改
-router.post('/edit/:id', (req, res) => {
+router.put('/edit/:id', (req, res) => {
   // let { name, date, category, amount } = req.body
   // amount = parseInt(amount)
   req.body.amount = parseInt(req.body.amount)
@@ -86,7 +86,7 @@ router.post('/edit/:id', (req, res) => {
 })
 
 //刪除
-router.post('/delete/:id', (req, res) => {
+router.delete('/delete/:id', (req, res) => {
   Record.findById(req.params.id, (err, record) => {
     if (err) console.error(err)
     record.remove(err => {
