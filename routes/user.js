@@ -4,7 +4,7 @@ const Record = require('../models/expenseTracker.js')
 
 //註冊頁面
 router.get('/register', (req, res) => {
-  res.send('register page')
+  res.render('register')
 })
 //註冊
 router.post('/register', (req, res) => {
@@ -12,7 +12,7 @@ router.post('/register', (req, res) => {
 })
 //登入頁面
 router.get('/login', (req, res) => {
-  res.send('login page')
+  res.render('login')
 })
 //登入
 router.post('/login', (req, res) => {
