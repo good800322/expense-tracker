@@ -8,36 +8,36 @@
         <h4 class="text-center">請輸入你的支出</h4>
       </div>
     </div>
-    <form action="/" method="POST" class="mr-5">
+    <form action="/expenses/new" method="POST" class="mr-5">
       <div class="form-group row my-4 py-2">
         <label for="name" class="col-sm-2 col-form-label font-weight-bold">名稱*</label>
         <div class="col-sm-10">
-          <input class="form-control" type="text" id="name" name="name">
+          <input class="form-control" type="text" id="name" name="name" value="{{name}}">
         </div>
       </div>
       <div class="form-group row my-4 py-2">
         <label for="date" class="col-sm-2 col-form-label font-weight-bold">日期*</label>
         <div class="col-sm-10">
-          <input class="form-control" type="text" id="date" name="date" placeholder="範例 2020/01/01">
+          <input class="form-control" type="text" id="date" name="date" placeholder="範例 2020/01/01" value="{{date}}">
         </div>
       </div>
       <div class="form-group row my-4 py-2">
         <label for="category" class="col-sm-2 col-form-label font-weight-bold">類別*</label>
         <div class="col-sm-10">
-          <select class="custom-select custom-select-lg mb-3">
-            <option selected>種類</option>
-            <option value="1">家用</option>
-            <option value="2">娛樂</option>
-            <option value="3">交通</option>
-            <option value="4">飲食</option>
-            <option value="5">其他</option>
+          <select class="form-control custom-select custom-select-lg mb-3" id="category" name="category">
+            <option value="-1">種類</option>
+            <option value="fas fa-home">家用</option>
+            <option value="fas fa-grin-beam">娛樂</option>
+            <option value="fas fa-shuttle-van">交通</option>
+            <option value="fas fa-utensils">飲食</option>
+            <option value="fas fa-pen">其他</option>
           </select>
         </div>
       </div>
       <div class="form-group row my-4 py-2">
-        <label for="cost" class="col-sm-2 col-form-label font-weight-bold">金額*</label>
+        <label for="amount" class="col-sm-2 col-form-label font-weight-bold">金額*</label>
         <div class="col-sm-10">
-          <input class="form-control" type="text" id="cost" name="cost">
+          <input class="form-control" type="number" id="amount" name="amount" value="{{amount}}">
         </div>
       </div>
       <div class="form-group row my-4 py-2">
