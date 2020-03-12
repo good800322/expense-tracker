@@ -11,9 +11,10 @@ const recordSchema = new Schema({
     type: String,
     required: true
   },
-  date: {
-    type: Date,
-    default: Date.now,
+  date: {    //因為會顯示到幾時幾分所以改用string
+    type: String,
+    // type: Date,
+    // default: Date.now,
     required: true
   },
   amount: {
@@ -22,11 +23,11 @@ const recordSchema = new Schema({
   },
   totalAmount: {
     type: Number,
-    required: true
+    required: false
   },
   userId: {
     type: String,
-    required: true
+    required: false
   }
 })
 

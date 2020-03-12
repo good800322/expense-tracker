@@ -1,0 +1,32 @@
+[
+  {
+    "name": "房租",
+    "category": "fas fa-home",
+    "date": "2020/01/01",
+    "amount": 13000
+  },
+  {
+    "name": "午餐",
+    "category": "fas fa-utensils",
+    "date": "2020/01/02",
+    "amount": 300
+  },
+  {
+    "name": "計程車",
+    "category": "fas fa-shuttle-van",
+    "date": "2020/01/04",
+    "amount": 200
+  },
+  {
+    "name": "看電影",
+    "category": "fas fa-grin-beam",
+    "date": "2020/01/06",
+    "amount": 300
+  },
+  {
+    "name": "還錢",
+    "category": "fas fa-pen",
+    "date": "2020/01/09",
+    "amount": 500
+  }
+]

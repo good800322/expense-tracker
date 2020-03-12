@@ -17,15 +17,16 @@
 </div>
 <div class="col-md-10 offset-md-2">
   <ul class="list-group">
+    {{#each records}}
     <li class="list-group-item">
       <div class="row d-flex justify-content-between p-0 mt-4">
         <div class="col-8 d-flex">
-          <i class="fas fa-home fa-3x col-auto" style="color:rgb(0, 238, 255)"></i>
+          <i class="{{this.category}} fa-3x col-auto" style="color:rgb(0, 238, 255)"></i>
           <div class="d-flex flex-column">
-            <p class="h3 ">租金</p>
-            <p class="h5 ">2010/05/10</p>
+            <p class="h3 ">{{this.name}}</p>
+            <p class="h5 ">{{this.date}}</p>
           </div>
-          <p class="h1 ml-auto">1000</p>
+          <p class="h1 ml-auto">{{this.amount}}</p>
         </div>
         <div class="col-auto mr-1 p-0">
           <a href="/expense/edit" class="btn btn-outline-dark btn-lg m-0">修改</a>
@@ -35,6 +36,7 @@
         </div>
       </div>
     </li>
+    {{/each}}
   </ul>
 </div>
 <div class="col-md-7 offset-md-2 d-flex justify-content-center">

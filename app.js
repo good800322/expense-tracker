@@ -21,6 +21,15 @@ db.once('open', () => {
 app.engine('handlebars', exphb({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
 
+
+app.get('/', (req, res) => {
+  Record.find()
+    .lean()
+    .exec((err, records) => {
+      if (err) console.error(err)
+      return res.render('index', { records: records })
+    })
+})
 //use routes for /expense
 app.use('/expenses', require('./routes/expenses.js'))
 
