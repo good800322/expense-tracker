@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const User = require('../models/user.js')
 const passport = require('passport')
+const bcrypt = require('bcryptjs')
 
 //註冊頁面
 router.get('/register', (req, res) => {
@@ -20,7 +21,8 @@ router.post('/register', (req, res) => {
           password,
           password2
         })
-      } else if (password !== password2) {
+      }
+      if (password !== password2) {
         console.log('Passwords not the same')
         return res.render('register', {
           name,
@@ -34,11 +36,17 @@ router.post('/register', (req, res) => {
           email,
           password
         })
-        newUser.save()
-          .then(user => {
-            return res.redirect('/')
+        bcrypt.genSalt(10, (err, salt) => {
+          bcrypt.hash(newUser.password, salt, (err, hash) => {
+            newUser.password = hash
+            newUser.save()
+              .then(user => {
+                return res.redirect('/')
+              })
+              .catch(err => console.error(err))
           })
-          .catch(err => console.error(err))
+        })
+
       }
     })
 })

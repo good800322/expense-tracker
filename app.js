@@ -8,6 +8,10 @@ const bodyParser = require('body-parser')
 const methodOverride = require('method-override')
 const session = require('express-session')
 const passport = require('passport')
+//判別開發環境是否引入dotenv
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config()
+}
 
 mongoose.connect('mongodb://localhost/expenseTracker', { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
 const db = mongoose.connection
@@ -51,10 +55,13 @@ app.use(methodOverride('_method'))
 
 
 
+
 //use routes
 app.use('/', require('./routes/home.js'))
 app.use('/expenses', require('./routes/expenses.js'))
 app.use('/user', require('./routes/user.js'))
+//facebook auth
+app.use('/auth', require('./routes/auths.js'))
 
 app.listen(port, () => {
   console.log(`the app is listening on http://localhost:${port}/`)
