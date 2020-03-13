@@ -21,13 +21,11 @@ const recordSchema = new Schema({
     type: Number,
     required: true
   },
-  totalAmount: {
-    type: Number,
-    required: false
-  },
   userId: {
-    type: String,
-    required: false
+    type: Schema.Types.ObjectId,
+    ref: 'User',
+    index: true,
+    required: true
   }
 })
 

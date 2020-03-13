@@ -29,7 +29,8 @@ router.post('/new', authenticated, (req, res) => {
           name,
           date,
           category,
-          amount
+          amount,
+          userId: req.user._id
         })
         newRecord.save()
           .then(record => {
@@ -41,7 +42,7 @@ router.post('/new', authenticated, (req, res) => {
 })
 //修改頁面
 router.get('/edit/:id', authenticated, (req, res) => {
-  Record.findById({ _id: req.params.id })
+  Record.findById({ _id: req.params.id, userId: req.user._id })
     .lean()
     .exec((err, record) => {
       if (err) console.error(err)
@@ -54,7 +55,7 @@ router.put('/edit/:id', authenticated, (req, res) => {
   // let { name, date, category, amount } = req.body
   // amount = parseInt(amount)
   req.body.amount = parseInt(req.body.amount)
-  Record.findById({ _id: req.params.id }, (err, record) => {
+  Record.findById({ _id: req.params.id, userId: req.user._id }, (err, record) => {
     if (err) console.error(err)
     //###########################編輯方法
     for (let key in record) {
@@ -88,7 +89,7 @@ router.put('/edit/:id', authenticated, (req, res) => {
 
 //刪除
 router.delete('/delete/:id', authenticated, (req, res) => {
-  Record.findById(req.params.id, (err, record) => {
+  Record.findById({ _id: req.params.id, userId: req.user._id }, (err, record) => {
     if (err) console.error(err)
     record.remove(err => {
       if (err) console.error(err)
@@ -101,7 +102,7 @@ router.delete('/delete/:id', authenticated, (req, res) => {
 router.get('/sort/:category', authenticated, (req, res) => {
   //重新組合成category格式
   const category = 'fas ' + req.params.category
-  Record.find({ category: category })
+  Record.find({ category: category, userId: req.user._id })
     .lean()
     .exec((err, records) => {
       if (err) console.error(err)

@@ -4,7 +4,7 @@ const Record = require('../models/expenseTracker.js')
 const { authenticated } = require('../config/auth.js')
 
 router.get('/', authenticated, (req, res) => {
-  Record.find()
+  Record.find({ userId: req.user._id })
     .lean()
     .exec((err, records) => {
       if (err) console.error(err)

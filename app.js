@@ -9,7 +9,7 @@ const methodOverride = require('method-override')
 const session = require('express-session')
 const passport = require('passport')
 
-mongoose.connect('mongodb://localhost/expenseTracker', { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect('mongodb://localhost/expenseTracker', { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
 const db = mongoose.connection
 
 //連線異常
@@ -39,6 +39,7 @@ require('./config/passport.js')(passport)
 //取得並儲存現在登入之user
 app.use((req, res, next) => {
   res.locals.user = req.user
+  res.locals.isAuthenticated = req.isAuthenticated
   next()
 })
 
