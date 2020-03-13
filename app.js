@@ -7,6 +7,7 @@ const Record = require('./models/expenseTracker.js')
 const bodyParser = require('body-parser')
 const methodOverride = require('method-override')
 const session = require('express-session')
+const passport = require('passport')
 
 mongoose.connect('mongodb://localhost/expenseTracker', { useNewUrlParser: true, useUnifiedTopology: true })
 const db = mongoose.connection
@@ -30,6 +31,17 @@ app.use(session({
   resave: false,
   saveUninitialized: true
 }))
+//passport
+app.use(passport.initialize())
+app.use(passport.session())
+
+require('./config/passport.js')(passport)
+//取得並儲存現在登入之user
+app.use((req, res, next) => {
+  res.locals.user = req.user
+  next()
+})
+
 
 //bodyParser
 app.use(bodyParser.urlencoded({ extended: true }))
