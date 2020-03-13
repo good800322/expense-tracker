@@ -1,16 +1,17 @@
 const express = require('express')
 const router = express.Router()
 const Record = require('../models/expenseTracker.js')
+const { authenticated } = require('../config/auth.js')
 
-router.get('/', (req, res) => {
+router.get('/', authenticated, (req, res) => {
   res.redirect('/')
 })
 //新增頁面
-router.get('/new', (req, res) => {
+router.get('/new', authenticated, (req, res) => {
   res.render('new')
 })
 //新增
-router.post('/new', (req, res) => {
+router.post('/new', authenticated, (req, res) => {
   let { name, date, category, amount } = req.body
   amount = parseInt(amount)
   Record.findOne({ name: name, date: date, amount: amount })
@@ -39,7 +40,7 @@ router.post('/new', (req, res) => {
     })
 })
 //修改頁面
-router.get('/edit/:id', (req, res) => {
+router.get('/edit/:id', authenticated, (req, res) => {
   Record.findById({ _id: req.params.id })
     .lean()
     .exec((err, record) => {
@@ -49,7 +50,7 @@ router.get('/edit/:id', (req, res) => {
     })
 })
 //修改
-router.put('/edit/:id', (req, res) => {
+router.put('/edit/:id', authenticated, (req, res) => {
   // let { name, date, category, amount } = req.body
   // amount = parseInt(amount)
   req.body.amount = parseInt(req.body.amount)
@@ -86,7 +87,7 @@ router.put('/edit/:id', (req, res) => {
 })
 
 //刪除
-router.delete('/delete/:id', (req, res) => {
+router.delete('/delete/:id', authenticated, (req, res) => {
   Record.findById(req.params.id, (err, record) => {
     if (err) console.error(err)
     record.remove(err => {
@@ -97,7 +98,7 @@ router.delete('/delete/:id', (req, res) => {
 })
 
 //sort
-router.get('/sort/:category', (req, res) => {
+router.get('/sort/:category', authenticated, (req, res) => {
   //重新組合成category格式
   const category = 'fas ' + req.params.category
   Record.find({ category: category })

@@ -1,8 +1,9 @@
 const express = require('express')
 const router = express.Router()
 const Record = require('../models/expenseTracker.js')
+const { authenticated } = require('../config/auth.js')
 
-router.get('/', (req, res) => {
+router.get('/', authenticated, (req, res) => {
   Record.find()
     .lean()
     .exec((err, records) => {
