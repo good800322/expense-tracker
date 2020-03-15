@@ -12,19 +12,17 @@ module.exports = passport => {
         User.findOne({ email: email })
           .then(user => {
             if (!user) {
-              return done(null, false, { message: 'no this user' })
+              return done(null, false, { message: '無此使用者' })
             }
             //bcrypt檢查密碼
-            bcrypt.compare(user.password, password, (err, isMatch) => {
-              if (err) console.error(err)
+            bcrypt.compare(password, user.password, (err, isMatch) => {
+              if (err) throw err
               if (isMatch) {
                 return done(null, user)
               } else {
-                return done(null, false, { message: 'email or password incorrect' })
+                return done(null, false, { message: '郵件或密碼錯誤' })
               }
-
             })
-            return done(null, user)
           })
           .catch(err => {
             if (err) console.error(err)

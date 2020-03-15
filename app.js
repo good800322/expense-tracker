@@ -8,6 +8,7 @@ const bodyParser = require('body-parser')
 const methodOverride = require('method-override')
 const session = require('express-session')
 const passport = require('passport')
+const flash = require('connect-flash')
 //判別開發環境是否引入dotenv
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config()
@@ -28,7 +29,8 @@ db.once('open', () => {
 //template engine
 app.engine('handlebars', exphb({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
-
+//connect-flash
+app.use(flash())
 //session
 app.use(session({
   secret: 'my key',
@@ -44,6 +46,12 @@ require('./config/passport.js')(passport)
 app.use((req, res, next) => {
   res.locals.user = req.user
   res.locals.isAuthenticated = req.isAuthenticated
+  res.locals.success_msg = req.flash('success_msg')
+  res.locals.warning_msg = req.flash('warning_msg')
+  //-----Q:------嘗試用這個方法但似乎還是無法顯示----------??????
+  res.locals.error_msg = [{
+    message: req.flash('error')
+  }]
   next()
 })
 
@@ -52,6 +60,7 @@ app.use((req, res, next) => {
 app.use(bodyParser.urlencoded({ extended: true }))
 //method-override
 app.use(methodOverride('_method'))
+
 
 
 
