@@ -16,7 +16,7 @@ router.post('/new', authenticated, (req, res) => {
   amount = parseInt(amount)
   Record.findOne({ name: name, date: date, amount: amount })
     .then(record => {
-      //排除重複輸入（資料完全一樣）#############?warning??????
+      //排除重複輸入（資料完全一樣
       if (record) {
         return res.render('new', {
           name,
@@ -46,18 +46,15 @@ router.get('/edit/:id', authenticated, (req, res) => {
     .lean()
     .exec((err, record) => {
       if (err) console.error(err)
-      //###############??????如何顯示種類
+      //---------Q:該如何保留select選項?
       return res.render('update', { record: record })
     })
 })
 //修改
 router.put('/edit/:id', authenticated, (req, res) => {
-  // let { name, date, category, amount } = req.body
-  // amount = parseInt(amount)
   req.body.amount = parseInt(req.body.amount)
   Record.findById({ _id: req.params.id, userId: req.user._id }, (err, record) => {
     if (err) console.error(err)
-    //###########################編輯方法
     for (let key in record) {
       if (req.body[key]) {
         record[key] = req.body[key]
@@ -68,23 +65,6 @@ router.put('/edit/:id', authenticated, (req, res) => {
       return res.redirect('/')
     })
   })
-  // Record.findById({ _id: req.params.id })
-  //   .lean()
-  //   .exec((err, record) => {
-  //     if (err) console.error(err)
-  //     //??????如何顯示種類
-  //     record = Record({
-  //       name,
-  //       date,
-  //       category,
-  //       amount
-  //     })
-  //     record.save()
-  //       .then(record => {
-  //         return res.redirect('/')
-  //       })
-  //       .catch(err => console.error(err))
-  //   })
 })
 
 //刪除

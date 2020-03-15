@@ -31,7 +31,7 @@
           </div>
           <p class="h1 ml-auto">{{this.amount}}</p>
         </div>
-        <div class="col-auto mr-1 p-0">
+        <div class="col-auto mr-1 ml-1 p-0">
           <a href="/expenses/edit/{{this._id}}" class="btn btn-outline-dark btn-lg m-0">修改</a>
           <form action="/expenses/delete/{{this._id}}?_method=DELETE" method="POST" style="display:inline"
             onsubmit="return confirm('確定要刪除這份資料嗎？')">

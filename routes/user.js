@@ -61,7 +61,6 @@ router.post('/register', (req, res) => {
 })
 //登入頁面
 router.get('/login', (req, res) => {
-  console.log(req.session)
   res.render('login')
 })
 //登入

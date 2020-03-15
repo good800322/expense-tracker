@@ -6,7 +6,10 @@ const expenseList = require('../../expense.json')
 const userList = require('../../user.json')
 const bcrypt = require('bcryptjs')
 
-mongoose.connect('mongodb://localhost/expenseTracker', { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/todo', {
+  useNewUrlParser: true,
+  useCreateIndex: true
+})
 
 const db = mongoose.connection
 

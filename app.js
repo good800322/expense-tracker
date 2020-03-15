@@ -14,7 +14,10 @@ if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config()
 }
 
-mongoose.connect('mongodb://localhost/expenseTracker', { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/todo', {
+  useNewUrlParser: true,
+  useCreateIndex: true
+})
 const db = mongoose.connection
 
 //連線異常
@@ -72,6 +75,6 @@ app.use('/user', require('./routes/user.js'))
 //facebook auth
 app.use('/auth', require('./routes/auths.js'))
 
-app.listen(port, () => {
-  console.log(`the app is listening on http://localhost:${port}/`)
+app.listen(process.env.PORT || 3000, () => {
+  console.log('App is running')
 })
