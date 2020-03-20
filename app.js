@@ -70,10 +70,10 @@ app.use(methodOverride('_method'))
 
 //use routes
 app.use('/', require('./routes/home.js'))
-app.use('/expenses', require('./routes/expenses.js'))
+app.use('/expenses', require('./routes/expense.js'))
 app.use('/user', require('./routes/user.js'))
 //facebook auth
-app.use('/auth', require('./routes/auths.js'))
+app.use('/auth', require('./routes/auth.js'))
 
 app.listen(process.env.PORT || port, () => {
   console.log('App is running')

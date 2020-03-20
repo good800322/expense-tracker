@@ -20,7 +20,7 @@ module.exports = passport => {
               if (isMatch) {
                 return done(null, user)
               } else {
-                return done(null, false, { message: '郵件或密碼錯誤' })
+                return done(null, false, { message: 'Email or Password incorrect' })
               }
             })
           })

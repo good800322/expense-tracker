@@ -65,10 +65,11 @@ router.get('/login', (req, res) => {
 })
 //登入
 router.post('/login', (req, res, next) => {
+  console.log(req.session)
   passport.authenticate('local', {
     successRedirect: '/',
-    failureFlash: true,
     failureRedirect: '/user/login',
+    failureFlash: true
   })(req, res, next)
 })
 //登出
